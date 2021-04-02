@@ -2,6 +2,8 @@ const express = require('express');
 const mysql = require('mysql');
 require('dotenv').config();
 
+const app = express();
+const port = process.env.PORT || 3000;
 
 // creating connection
 const db = mysql.createConnection({
@@ -10,7 +12,7 @@ const db = mysql.createConnection({
     password: process.env.PASSWORD,
     database: process.env.DATABASE,
 });
-const app = express();
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -79,7 +81,7 @@ app.post('/addNewCargo', (req, res) => {
 });
 
 
-const port = 3000;
+
 app.listen(port, () => {
     console.log(`server started at http://localhost:${port}`);
 })
